@@ -5,17 +5,12 @@ function login() {
 
     btnLogin.addEventListener("click", (e) => {
         console.log("btnLogin clicked");
-        const usernameElement = document.getElementById("username");
-        const passwordElement = document.getElementById("password");
+        const paperTokenElement = document.getElementById("paperToken");
 
-        const username = usernameElement.value;
-        const password = passwordElement.value;
+        const paperToken = paperTokenElement.value;
 
-        auth(username, password).then((token) => {
-            console.log(token);
-            localStorage.setItem("strateegiaAccessToken", token);
-            location.href = "main.html";
-        });
+        localStorage.setItem("paperToken", paperToken);
+        location.href = "main.html";
     });
 }
 

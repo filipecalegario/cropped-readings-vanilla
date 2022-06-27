@@ -1,7 +1,7 @@
 import { getAllProjects, getProjectById, getAllDivergencePointsByMapId, getCommentsGroupedByQuestionReport } from "https://unpkg.com/strateegia-api/strateegia-api.js";
 
 let users = [];
-const accessToken = localStorage.getItem("strateegiaAccessToken");
+const accessToken = localStorage.getItem("paperToken");
 
 export async function initializeProjectList() {
     const labs = await getAllProjects(accessToken)
@@ -49,7 +49,7 @@ async function updateMapList(selectedProject) {
     project.users.forEach(user => {
         users.push({ id: user.id, name: user.name });
     });
-    
+
     localStorage.setItem("users", JSON.stringify(users));
 
     let options = d3.select("#maps-list");
@@ -95,7 +95,7 @@ async function updateDivPointList(selectedMap) {
 async function setSelectedDivPoint(divPointId) {
     localStorage.setItem("selectedDivPoint", divPointId);
     const questions = await getCommentsGroupedByQuestionReport(accessToken, divPointId);
-    
+
     if (questions.length > 0) {
         console.log(questions);
     } else {
